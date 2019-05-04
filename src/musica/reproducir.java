@@ -1,5 +1,7 @@
 package musica;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +14,8 @@ import javax.sound.sampled.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 import javazoom.jl.decoder.InputStreamSource;
 import javazoom.jl.decoder.JavaLayerException;
@@ -39,6 +43,30 @@ public class reproducir {
 		
 		String asB64 = Base64.getEncoder().encodeToString(contenido);
 		
+		
+		
+		//System.out.print(asB64.length());
+		String ruta = "/home/jorge/Documentos/archivo.txt";
+        File archivo = new File(ruta);
+        BufferedWriter bw;
+        bw = new BufferedWriter(new FileWriter(archivo));
+        bw.write("base64");
+        bw.write("\n Hola amigos");
+        bw.close();
+        
+        String texto="";
+        
+        FileReader lector=new FileReader("/home/jorge/Documentos/archivo.txt");
+
+      //El contenido de lector se guarda en un BufferedReader
+      BufferedReader contenido1=new BufferedReader(lector);
+
+      //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
+      while((texto=contenido1.readLine())!=null)
+      {
+    	  System.out.println(texto);
+      	}
+     
 		
 		
 		// De un string de base 64 se genera un archivo temporal.
@@ -74,13 +102,13 @@ public class reproducir {
 				
 		
 		
-		AdvancedPlayer apl = new AdvancedPlayer(new FileInputStream("/home/jorge/Música/1.mp3"));
+		/*AdvancedPlayer apl = new AdvancedPlayer(new FileInputStream("/home/jorge/Música/1.mp3"));
 		long startTime = System.nanoTime();
 		AdvancedPlayer apl1 = new AdvancedPlayer(new FileInputStream(temporal));
 		//apl.play(comienzo,descomienzo);
 		apl1.play(comienzo,descomienzo);
 	    long endTime = System.nanoTime();
-	    System.out.println("Duración: " + (endTime-startTime)/1e6 + " ms"); 
+	    System.out.println("Duración: " + (endTime-startTime)/1e6 + " ms"); */
 	    
 	    
 	    
