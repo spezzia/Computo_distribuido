@@ -28,18 +28,10 @@ public class reproducir {
 	public static void main(String[] args) throws LineUnavailableException, IOException, UnsupportedAudioFileException, JavaLayerException {
 		// TODO Auto-generated method stub
 		
-		int camtidad = 38; // frames/ seg
-		int duracion = 22; //segundos de la cancion;
-		int total = 10716; // total fremes
 		
-		int inicio = 60; // segundo que inicia;
-		int fiinal = 90; //
-		
-		int comienzo = 60 * 38;
-		int descomienzo = 90 * 38;             
-		
-	 
-	   
+		// Crear un string base 64 de un archivo de musica.
+		// El proposito de este abstracto es saber como se enviará los archivos por corba
+	    // En este caso el string a enviar es asB64
 		java.io.File fichero = new java.io.File("/home/jorge/Música/1.mp3");
 		FileInputStream ficheroStream = new FileInputStream(fichero);
 		byte contenido[] = new byte[(int)fichero.length()];
@@ -49,7 +41,8 @@ public class reproducir {
 		
 		
 		
-		
+		// De un string de base 64 se genera un archivo temporal.
+		// En este caso el archivo es una cancion mp3
 		
 		byte[] asBytes = Base64.getDecoder().decode(asB64);
 		
@@ -62,7 +55,25 @@ public class reproducir {
 
 	        
 	 
-	        
+	    /// Con este fragmento de codigo se puede reproducir un pedazo de cancion determinado por 
+		/// comienco y descomienzo
+		
+		
+		
+		/// Dentro de una cancion mp3 se encomtro la siguiente informacion
+		
+				int camtidad = 38; // frames/ seg
+				int duracion = 220; //segundos de la cancion;
+				int total = 10716; // total fremes
+				
+				int inicio = 60; // segundo que inicia;
+				int fiinal = 90; //
+				
+				int comienzo = 60 * 38;
+				int descomienzo = 90 * 38;             
+				
+		
+		
 		AdvancedPlayer apl = new AdvancedPlayer(new FileInputStream("/home/jorge/Música/1.mp3"));
 		long startTime = System.nanoTime();
 		AdvancedPlayer apl1 = new AdvancedPlayer(new FileInputStream(temporal));
@@ -72,6 +83,8 @@ public class reproducir {
 	    System.out.println("Duración: " + (endTime-startTime)/1e6 + " ms"); 
 	    
 	    
+	    
+	    ///Se elimina el archivo temporal
 	    temporal.deleteOnExit();
 	}
 	
